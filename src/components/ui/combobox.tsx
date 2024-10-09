@@ -87,11 +87,11 @@ export function ComboboxFree({
 
   const placeholder = () => {
     if (disabled) {
-      return placeholderDisabled ?? t("Valitse");
+      return placeholderDisabled ?? t("Valitse", { ns: "components" });
     }
 
     if (value() === "") {
-      return placeholderSelect ?? t("Valitse");
+      return placeholderSelect ?? t("Valitse", { ns: "components" });
     }
   };
 
@@ -196,11 +196,11 @@ export function Combobox({
 
   const placeholder = () => {
     if (disabled) {
-      return placeholderDisabled ?? t("Valitse");
+      return placeholderDisabled ?? t("Valitse", { ns: "components" });
     }
 
     if (value === "") {
-      return placeholderSelect ?? t("Valitse");
+      return placeholderSelect ?? t("Valitse", { ns: "components" });
     }
   };
 
@@ -241,9 +241,15 @@ export function Combobox({
                 : 0;
             }}
           >
-            <CommandInput placeholder={placeholderSearch ?? t("Etsi...")} />
+            <CommandInput
+              placeholder={
+                placeholderSearch ?? t("Etsi...", { ns: "components" })
+              }
+            />
             <CommandList className="scrollbar scrollbar-thumb-slate-500 scrollbar-w-2 max-h-48">
-              <CommandEmpty>{searchEmpty ?? t("Ei tuloksia")}</CommandEmpty>
+              <CommandEmpty>
+                {searchEmpty ?? t("Ei tuloksia", { ns: "components" })}
+              </CommandEmpty>
               <CommandGroup>
                 {options.map((opt) => (
                   <CommandItem

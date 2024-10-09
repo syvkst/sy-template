@@ -94,11 +94,11 @@ export function ComboCreate({
 
   const placeholder = () => {
     if (disabled) {
-      return placeholderDisabled ?? t("Valitse");
+      return placeholderDisabled ?? t("Valitse", { ns: "components" });
     }
 
     if (value() === "") {
-      return placeholderSelect ?? t("Valitse");
+      return placeholderSelect ?? t("Valitse", { ns: "components" });
     }
   };
 
@@ -267,7 +267,7 @@ export function ComboCreate({
                 </CommandGroup>
               ) : (
                 <p className="p-4 italic text-sm">
-                  <Trans i18nKey="minQueryLength">
+                  <Trans ns="components" i18nKey="minQueryLength">
                     Etsintään vaaditaan vähintään {{ minQueryLength }} merkkiä
                   </Trans>
                 </p>

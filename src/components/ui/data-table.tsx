@@ -107,10 +107,10 @@ export function DataTable<TData, TValue>({
               level="h4"
               className={cn(globalFilter !== "" && "text-teal-500")}
             >
-              {t("Suodata")}
+              {t("Suodata", { ns: "components" })}
             </Heading>
             <Input
-              placeholder={t("Kirjoita...")}
+              placeholder={t("Kirjoita...", { ns: "components" })}
               value={globalFilter}
               onChange={(event) => {
                 table.setGlobalFilter(event.target.value);
@@ -169,7 +169,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  {t("Ei tuloksia")}
+                  {t("Ei tuloksia", { ns: "components" })}
                 </TableCell>
               </TableRow>
             )}
@@ -188,20 +188,25 @@ export function DataTable<TData, TValue>({
                   hasSelectedRows && "scale-100"
                 )}
               >
-                {t("Poista valitut")}
+                {t("Poista valitut", { ns: "components" })}
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>{t("Poista valitut")}</AlertDialogTitle>
+                <AlertDialogTitle>
+                  {t("Poista valitut", { ns: "components" })}
+                </AlertDialogTitle>
                 <AlertDialogDescription>
                   {t(
-                    "Tätä toimintoa ei voi peruuttaa. Valitut kohteet poistetaan pysyvästi. Haluatko varmasti jatkaa?"
+                    "Tätä toimintoa ei voi peruuttaa. Valitut kohteet poistetaan pysyvästi. Haluatko varmasti jatkaa?",
+                    { ns: "components" }
                   )}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>{t("Peruuta")}</AlertDialogCancel>
+                <AlertDialogCancel>
+                  {t("Peruuta", { ns: "components" })}
+                </AlertDialogCancel>
                 <AlertDialogAction
                   onClick={() => {
                     const selectedFiltered = table
@@ -211,7 +216,7 @@ export function DataTable<TData, TValue>({
                     onRowsDeleted(selectedFiltered);
                   }}
                 >
-                  {t("Jatka")}
+                  {t("Jatka", { ns: "components" })}
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -223,7 +228,7 @@ export function DataTable<TData, TValue>({
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          {t("Edellinen")}
+          {t("Edellinen", { ns: "components" })}
         </Button>
         <Button
           variant="outline"
@@ -231,7 +236,7 @@ export function DataTable<TData, TValue>({
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          {t("Seuraava")}
+          {t("Seuraava", { ns: "components" })}
         </Button>
       </div>
     </div>

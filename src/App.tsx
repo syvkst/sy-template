@@ -1,14 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import { LanguageToggle } from "@/components/ui/language-toggle";
+import { Label } from "./components/ui/label";
 
 function App() {
   return (
     <>
-      <div className="flex flex-col">
-        <ModeToggle />
-        <LanguageToggle />
-        <Button variant="outline">Press me!</Button>
+      <div className="flex flex-row my-6 mx-6 gap-4">
+        <Label className="border border-sy-06">
+          This is a label with an edge!
+        </Label>
       </div>
     </>
   );

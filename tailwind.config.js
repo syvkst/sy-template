@@ -123,13 +123,6 @@ module.exports = {
         ],
         miniver: ["Miniver", "system-ui", '"Segoe UI"', "Helvetica", "Arial"],
       },
-      screens: {
-        actionmenu: "800px",
-        casenumbers: "980px",
-        officers: "1270px",
-        civilians: "1560px",
-        notes: "1800px",
-      },
     },
   },
   plugins: [

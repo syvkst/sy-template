@@ -28,7 +28,7 @@ import { LanguageToggle } from "@/components/ui/language-toggle";
 <LanguageToggle />
 ```
 
-![Mode and language toggle buttons](src/assets/mode-language-toggle.png)
+![Mode and language toggle buttons](public/mode-language-toggle.png)
 
 You may get (and also set) the user's language choice with the `useLanguage` hook:
 
@@ -59,10 +59,10 @@ Default font for all elements is `Fira Sans`, and `Dosis` for headings. Both fon
 Corresponding Tailwind classes of `-firasans`, `-dosis`, `-miniver`, `-teko` and `-silkscreen` may be utilised for these fonts:
 
 ```tsx
-<span className="font-teko">Terve maailma!</span>
+<span className="font-teko">Hello, I am Teko!</span>
 ```
 
-![Text with Teko font](src/assets/teko.png)
+![Text with Teko font](public/teko.png)
 
 All fonts are licensed with [SIL OPEN FONT LICENSE Version 1.1](https://openfontlicense.org). License files and copyright notices are stored in `src/fonts/[FONT-NAME]` directory for each font, respectively.
 
@@ -72,4 +72,4 @@ This template includes a palette of slategray-ish colors, mostly for backgrounds
 <Label className="border border-sy-06">This is a label with an edge!</Label>
 ```
 
-![Label with sy-colored border](src/assets/edge-label.png)
+![Label with sy-colored border](public/edge-label.png)

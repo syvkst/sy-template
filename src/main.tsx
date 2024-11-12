@@ -1,14 +1,34 @@
+import React from "react";
 import "./i18n";
-import { ThemeProvider } from "@/components/ui/theme-provider";
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
+import ReactDOM from "react-dom/client";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
+import { NotFoundRoute } from "@tanstack/react-router";
+import { Route as rootRoute } from "@/routes/__root";
+import { NotFound } from "@/components/errors/NotFound";
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <ThemeProvider defaultTheme="dark" storageKey="sy-ui-theme">
-      <App />
-    </ThemeProvider>
-  </StrictMode>
-);
+const notFoundRoute = new NotFoundRoute({
+  getParentRoute: () => rootRoute,
+  component: NotFound,
+});
+
+// Set up a Router instance
+const router = createRouter({
+  routeTree,
+  defaultPreload: "intent",
+  notFoundRoute,
+});
+
+// Register things for typesafety
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+const rootElement = document.getElementById("app")!;
+
+if (!rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(<RouterProvider router={router} />);
+}

@@ -22,6 +22,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useTheme } from "./theme-provider";
 
 type ComboCreateProps = {
   options: Option[];
@@ -59,6 +60,8 @@ export function ComboCreate({
   const divRef = useRef<HTMLDivElement | null>(null);
   const spanRef = useRef<HTMLSpanElement | null>(null);
 
+  const { themeRoot } = useTheme();
+
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -79,7 +82,7 @@ export function ComboCreate({
   };
 
   const value = () => {
-    const foundValue = isControlled ? propValue ?? "" : internalValue;
+    const foundValue = isControlled ? (propValue ?? "") : internalValue;
 
     if (foundValue === "") return foundValue;
 
@@ -143,6 +146,7 @@ export function ComboCreate({
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
+                  type="button"
                   role="combobox"
                   aria-expanded={open}
                   className={cn(
@@ -172,6 +176,7 @@ export function ComboCreate({
           </Tooltip>
         </TooltipProvider>
         <PopoverContent
+          container={themeRoot}
           className="p-0"
           style={{ width: `${divRef.current?.offsetWidth ?? 500}px` }}
         >

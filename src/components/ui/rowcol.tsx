@@ -19,7 +19,10 @@ export function Row(
   const { children, className, ...rest } = props;
 
   return (
-    <div {...rest} className={cn("flex flex-row gap-4 items-start", className)}>
+    <div
+      {...rest}
+      className={cn("flex flex-row gap-4 items-center", className)}
+    >
       {children}
     </div>
   );

@@ -1,6 +1,6 @@
 # SY Template
 
-This template provides a setup for SY projects in [Vite](https://vite.dev/) with [React](https://react.dev/), [Typescript](https://www.typescriptlang.org/), [TailwindCSS](https://tailwindcss.com/) and custom components (mostly based on [shadcn](https://ui.shadcn.com/)).
+This template provides a setup for SY projects in [Vite](https://vite.dev/) with [React](https://react.dev/), [Typescript](https://www.typescriptlang.org/), [TailwindCSS](https://tailwindcss.com/), [TanStack Router](https://tanstack.com/router/latest) and custom components (mostly based on [shadcn](https://ui.shadcn.com/)).
 
 ## Installation
 

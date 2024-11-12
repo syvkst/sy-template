@@ -7,7 +7,6 @@ import {
   SortingState,
   getSortedRowModel,
   getFilteredRowModel,
-  Column,
   RowSelectionState,
   ColumnFiltersState,
   OnChangeFn,
@@ -35,11 +34,11 @@ import {
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ReactNode, useState } from "react";
-import { ArrowDown, ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Input } from "./input";
+import { Input } from "@/components/ui/input";
 import { Col } from "@/components/ui/rowcol";
 import { Heading } from "@/components/ui/headings";
+import { DataTablePagination } from "@/components/ui/data-table-pagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -51,6 +50,8 @@ interface DataTableProps<TData, TValue> {
   selections?: RowSelectionState;
   onSelectionsChanged?: OnChangeFn<RowSelectionState>;
   tableTitle?: string;
+  onRowClick?: (row: TData) => void;
+  hidePagination?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -63,6 +64,8 @@ export function DataTable<TData, TValue>({
   selections,
   onSelectionsChanged,
   tableTitle,
+  onRowClick,
+  hidePagination,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
@@ -99,8 +102,8 @@ export function DataTable<TData, TValue>({
     table.getIsAllPageRowsSelected() || table.getIsSomePageRowsSelected();
 
   return (
-    <div>
-      <div className="flex flex-col items-start py-4 gap-2 w-full">
+    <div className="w-full">
+      <div className="flex flex-col items-start gap-2 w-full">
         {filter === "global" && (
           <Col className="w-full">
             <Heading
@@ -150,11 +153,17 @@ export function DataTable<TData, TValue>({
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
+                  onClick={() => {
+                    if (onRowClick) {
+                      onRowClick(row.original);
+                    }
+                  }}
+                  className={cn(onRowClick && "cursor-pointer")}
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell className="whitespace-pre-wrap" key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
@@ -222,58 +231,8 @@ export function DataTable<TData, TValue>({
             </AlertDialogContent>
           </AlertDialog>
         )}
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {t("Edellinen", { ns: "components" })}
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          {t("Seuraava", { ns: "components" })}
-        </Button>
+        {!hidePagination && <DataTablePagination table={table} />}
       </div>
     </div>
-  );
-}
-
-type SortableHeaderProps<TData, TValue> = {
-  column: Column<TData, TValue>;
-  label: string;
-};
-
-export function SortableHeader<TData, TValue>({
-  column,
-  label,
-}: SortableHeaderProps<TData, TValue>) {
-  const getArrow = (sort: false | "asc" | "desc") => {
-    switch (sort) {
-      case false:
-        return;
-      case "asc":
-        return <ArrowDown className="ml-2 h-4 w-4" />;
-      default:
-        return <ArrowUp className="ml-2 h-4 w-4" />;
-    }
-  };
-
-  return (
-    <Button
-      variant="ghost"
-      onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      className={cn(
-        "ml-3 mr-3",
-        column.getCanSort() && column.getIsSorted() !== false && "ml-0 mr-0"
-      )}
-    >
-      {label}
-      {column.getCanSort() && getArrow(column.getIsSorted())}
-    </Button>
   );
 }

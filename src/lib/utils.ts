@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { Option } from "@/types/data/option";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -29,4 +30,13 @@ export const getNodeText = (node: React.ReactNode): string => {
       console.warn("Unresolved `node` of type:", typeof node, node);
       return "";
   }
+};
+
+export const mapStringArrayToOptions = (arr: string[]): Option[] => {
+  return arr.map((s) => {
+    return {
+      label: s,
+      value: s,
+    };
+  });
 };

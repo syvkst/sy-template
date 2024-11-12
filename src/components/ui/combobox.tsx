@@ -17,7 +17,8 @@ import {
 import { Option } from "@/types/data/option";
 import { useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Input } from "./input";
+import { Input } from "@/components/ui/input";
+import { useTheme } from "@/components/ui/theme-provider";
 
 type ComboboxProps = {
   options: Option[];
@@ -62,7 +63,7 @@ export function ComboboxFree({
   };
 
   const value = () => {
-    const foundValue = isControlled ? propValue ?? "" : internalValue;
+    const foundValue = isControlled ? (propValue ?? "") : internalValue;
 
     if (foundValue === "") return foundValue;
 
@@ -182,6 +183,8 @@ export function Combobox({
 
   const value = isControlled ? propValue : internalValue;
 
+  const { themeRoot } = useTheme();
+
   const { t } = useTranslation();
 
   const onSelect = (currentValue: string) => {
@@ -224,7 +227,7 @@ export function Combobox({
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          withoutPortal
+          container={themeRoot}
           className="w-full p-0"
           style={{ width: `${divRef.current?.offsetWidth ?? 500}px` }}
         >

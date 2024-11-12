@@ -1,4 +1,10 @@
 {
-  "fi": {},
-  "sv": {}
+  "fi": {
+    "Koti": "Koti",
+    "Meistä": "Meistä"
+  },
+  "sv": {
+    "Koti": "Hem",
+    "Meistä": "Om oss"
+  }
 }

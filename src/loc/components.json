@@ -15,7 +15,8 @@
     "Teema": "Teema",
     "Vaalea": "Vaalea",
     "Tumma": "Tumma",
-    "Järjestelmä": "Järjestelmä"
+    "Järjestelmä": "Järjestelmä",
+    "Valittua sivua ei löytynyt.": "Valittua sivua ei löytynyt."
   },
   "sv": {
     "Valitse": "Välja",
@@ -33,6 +34,7 @@
     "Teema": "Tema",
     "Vaalea": "Ljus",
     "Tumma": "Mörk",
-    "Järjestelmä": "Tema enligt allmän standard"
+    "Järjestelmä": "Tema enligt allmän standard",
+    "Valittua sivua ei löytynyt.": "Den valda sidan hittades inte."
   }
 }
